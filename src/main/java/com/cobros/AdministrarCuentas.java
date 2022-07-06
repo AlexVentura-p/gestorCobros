@@ -3,7 +3,7 @@ package com.cobros;
 
 import java.util.Scanner;
 
-public class AdministrarCuentas implements CreacionCuenta {
+public class AdministrarCuentas implements CreacionCuenta,Update {
 
   @Override
   public Cuenta CrearCuenta() {
@@ -30,7 +30,9 @@ public class AdministrarCuentas implements CreacionCuenta {
         nuevaCuenta.setMonto(input.nextDouble());
         System.out.println("Ingrese cuota: ");
         nuevaCuenta.setCuota(input.nextDouble());
-        nuevaCuenta.setEstado("Pendiente.");
+        input.nextLine();
+        System.out.println("Digite el estado de la cuenta: ");
+        nuevaCuenta.setEstado(input.nextLine());
 
         cuenta = nuevaCuenta;
         System.out.println("Cuenta creada.");
@@ -43,10 +45,30 @@ public class AdministrarCuentas implements CreacionCuenta {
       }
     }
     return null;
+
+
   }
 
   public void emailPagoAtrasado(String correo) {
     EnvioCorreo nuevoCorreo = new AvisoPagoAtrasado();
     nuevoCorreo.enviarCorreo(correo);
   }
+
+
+  @Override
+  public Cuenta actualizarCuenta(Cuenta oldCuenta) {
+    Actualizar actualizar = new Actualizar();
+    Cuenta cuentaActualizada = actualizar.actualizarCuenta(oldCuenta);;
+    return cuentaActualizada;
+  }
+
+  public Cuenta validarPago(Cuenta cuenta)
+  {
+    ValidarPago  validacion = new ValidarPago();
+    Cuenta cuentaValidada = validacion.validarPago(cuenta);
+    return cuentaValidada;
+  }
+
+
 }
+

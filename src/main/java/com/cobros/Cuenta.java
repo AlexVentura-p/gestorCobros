@@ -34,4 +34,5 @@ public class Cuenta {
     this.estado = estado;
     this.correo = correo;
   }
+
 }
