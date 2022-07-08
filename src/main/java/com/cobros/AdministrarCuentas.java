@@ -1,9 +1,8 @@
 package com.cobros;
 
-
 import java.util.Scanner;
 
-public class AdministrarCuentas implements CreacionCuenta,Update {
+public class AdministrarCuentas implements CreacionCuenta, Update {
 
   @Override
   public Cuenta CrearCuenta() {
@@ -45,8 +44,6 @@ public class AdministrarCuentas implements CreacionCuenta,Update {
       }
     }
     return null;
-
-
   }
 
   public void emailPagoAtrasado(String correo) {
@@ -54,21 +51,17 @@ public class AdministrarCuentas implements CreacionCuenta,Update {
     nuevoCorreo.enviarCorreo(correo);
   }
 
-
   @Override
   public Cuenta actualizarCuenta(Cuenta oldCuenta) {
     Actualizar actualizar = new Actualizar();
-    Cuenta cuentaActualizada = actualizar.actualizarCuenta(oldCuenta);;
+    Cuenta cuentaActualizada = actualizar.actualizarCuenta(oldCuenta);
     return cuentaActualizada;
   }
 
-  public Cuenta validarPago(Cuenta cuenta)
-  {
-    ValidarPago  validacion = new ValidarPago();
+  public Cuenta validarPago(Cuenta cuenta) {
+    ValidarPago validacion = new ValidarPago();
     Cuenta cuentaValidada = validacion.validarPago(cuenta);
     return cuentaValidada;
   }
 
-
 }
-

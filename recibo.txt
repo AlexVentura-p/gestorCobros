@@ -1,7 +1,7 @@
 Gracias por su pago******************
-Cuenta: 123
+Cuenta: 500
 Nombre: alex
-Dui: 0
-Producto: sillon
-Cuota: 12.0
-Monto: 1000.0
+Dui: 456789
+Producto: casa
+Cuota: 400.0
+Monto: 45000.0

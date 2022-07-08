@@ -58,8 +58,7 @@ public class AvisoPagoAtrasado implements EnvioCorreo {
             """
               Estimado.
               Le informamos que el pago del correspondiente mes cuenta con retraso.
-              Pedimos de la manera más cordial posible realizarlo antes que sus servicios sean
-              indefinidamente descontinuados.
+              Pedimos realizarlo lo más antes posible para evitar todo tipo de intereses.
               """;
       }
 

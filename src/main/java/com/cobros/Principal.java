@@ -1,13 +1,10 @@
 package com.cobros;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.Scanner;
 
 public class Principal {
   public static HashMap<Integer, Cuenta> listaCuentas = new HashMap<>();
-
 
   public static void main(String[] args) {
 
@@ -15,23 +12,23 @@ public class Principal {
     nueva.setNumeroCuenta(123);
     nueva.setNombre("alex");
     nueva.setProducto("silla");
-    nueva.setCorreo("alex.ventura300@gmail.com");
+    nueva.setCorreo("2510282020@mail.utec.edu.sv");
     nueva.setMonto(1200);
     nueva.setCuota(12);
     nueva.setEstado("activo");
 
-    listaCuentas.put(nueva.getNumeroCuenta(),nueva);
+    listaCuentas.put(nueva.getNumeroCuenta(), nueva);
 
     Cuenta nueva2 = new Cuenta();
     nueva2.setNumeroCuenta(45);
     nueva2.setNombre("alex");
     nueva2.setProducto("mesa");
-    nueva2.setCorreo("alex.ventura300@gmail.com");
+    nueva2.setCorreo("2510282020@mail.utec.edu.sv");
     nueva2.setMonto(100);
     nueva2.setCuota(12);
     nueva2.setEstado("activo");
 
-    listaCuentas.put(nueva2.getNumeroCuenta(),nueva2);
+    listaCuentas.put(nueva2.getNumeroCuenta(), nueva2);
 
     Scanner input = new Scanner(System.in);
     AdministrarCuentas admin = new AdministrarCuentas();
@@ -63,13 +60,13 @@ public class Principal {
               switch (optionAnswer) {
                 case "a":
                   Cuenta cuentaValidada = admin.validarPago(listaCuentas.get(numeroCuenta));
-                  listaCuentas.replace(cuentaValidada.getNumeroCuenta(),cuentaValidada);
+                  listaCuentas.replace(cuentaValidada.getNumeroCuenta(), cuentaValidada);
                   System.out.println("Validando pago...\n");
                   break;
                 case "b":
                   System.out.println("Actualizando datos...\n");
                   Cuenta cuenta = admin.actualizarCuenta(listaCuentas.get(numeroCuenta));
-                  listaCuentas.replace(numeroCuenta,cuenta);
+                  listaCuentas.replace(numeroCuenta, cuenta);
                   break;
                 case "c":
                   System.out.println("EnviandoCorreo..\n");
