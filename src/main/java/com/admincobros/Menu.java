@@ -33,7 +33,6 @@ public class Menu {
         Scanner input = new Scanner(System.in);
         AdministrarCuentas admin = new AdministrarCuentas();
         String answer = "";
-
         System.out.println("Bienvenido");
 
         while (!answer.equals("x")) {
