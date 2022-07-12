@@ -1,17 +1,16 @@
-package com.cobros;
+package com.admincobros;
 
 import java.io.*;
 
-public class EstadoCuenta extends Principal {
+public class EstadoCuenta {
   Cuenta c = new Cuenta();
   File file = new File("recibo.txt");
   BufferedWriter bf = null;
 
-  public Cuenta estadoCuenta(int numeroCuenta) {
+  public Cuenta estadoCuenta(Cuenta cuenta) {
 
     try {
 
-      Cuenta cuenta = listaCuentas.get(numeroCuenta);
       String mensaje =
           "Gracias por su pago"
               + "******************"

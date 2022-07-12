@@ -1,4 +1,4 @@
-package com.cobros;
+package com.email;
 
 import java.util.Properties;
 import java.util.logging.Level;

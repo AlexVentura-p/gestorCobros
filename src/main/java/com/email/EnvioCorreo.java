@@ -1,4 +1,4 @@
-package com.cobros;
+package com.email;
 
 public interface EnvioCorreo {
 

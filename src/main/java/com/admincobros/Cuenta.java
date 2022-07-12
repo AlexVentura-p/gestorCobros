@@ -1,4 +1,4 @@
-package com.cobros;
+package com.admincobros;
 
 import lombok.Getter;
 import lombok.Setter;

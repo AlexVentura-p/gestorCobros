@@ -1,4 +1,4 @@
-package com.cobros;
+package com.admincobros;
 
 import java.util.Scanner;
 
@@ -11,7 +11,7 @@ public class ValidarPago {
     opcion = entrada.nextLine();
     if (opcion.equals("si")) {
       EstadoCuenta ec = new EstadoCuenta();
-      ec.estadoCuenta(cuenta.getNumeroCuenta());
+      ec.estadoCuenta(cuenta);
     } else if (!opcion.equals("si")) {
       double interes = 0.10;
       double nuevoMonto = cuenta.getMonto() + (cuenta.getMonto() * interes);

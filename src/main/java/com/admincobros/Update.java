@@ -1,4 +1,4 @@
-package com.cobros;
+package com.admincobros;
 
 public interface Update {
 

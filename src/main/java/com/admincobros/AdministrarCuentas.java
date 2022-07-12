@@ -1,4 +1,7 @@
-package com.cobros;
+package com.admincobros;
+
+import com.email.AvisoPagoAtrasado;
+import com.email.EnvioCorreo;
 
 import java.util.Scanner;
 
@@ -61,6 +64,7 @@ public class AdministrarCuentas implements CreacionCuenta, Update {
   public Cuenta validarPago(Cuenta cuenta) {
     ValidarPago validacion = new ValidarPago();
     Cuenta cuentaValidada = validacion.validarPago(cuenta);
+
     return cuentaValidada;
   }
 

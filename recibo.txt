@@ -1,7 +1,7 @@
 Gracias por su pago******************
-Cuenta: 500
-Nombre: alex
-Dui: 456789
-Producto: casa
-Cuota: 400.0
-Monto: 45000.0
+Cuenta: 0
+Nombre: null
+Dui: 0
+Producto: null
+Cuota: 0.0
+Monto: 1500.0
