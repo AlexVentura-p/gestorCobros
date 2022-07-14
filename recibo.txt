@@ -1,7 +1,7 @@
 Gracias por su pago******************
-Cuenta: 0
-Nombre: null
+Cuenta: 123
+Nombre: alex
 Dui: 0
-Producto: null
-Cuota: 0.0
-Monto: 1500.0
+Producto: silla
+Cuota: 12.0
+Monto: 1320.0

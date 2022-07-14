@@ -5,14 +5,11 @@ import com.email.EnvioCorreo;
 
 import java.util.Scanner;
 
-public class AdministrarCuentas implements CreacionCuenta, Update {
+public class AdministrarCuentas {
 
-  @Override
-  public Cuenta CrearCuenta() {
+
+  public Cuenta crearCuenta() {
     Scanner input = new Scanner(System.in);
-    Cuenta cuenta = null;
-
-    while (cuenta == null) {
 
       try {
         Cuenta nuevaCuenta = new Cuenta();
@@ -36,17 +33,14 @@ public class AdministrarCuentas implements CreacionCuenta, Update {
         System.out.println("Digite el estado de la cuenta: ");
         nuevaCuenta.setEstado(input.nextLine());
 
-        cuenta = nuevaCuenta;
         System.out.println("Cuenta creada.");
 
-        return cuenta;
+        return nuevaCuenta;
 
       } catch (Exception ex) {
         System.out.println("Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
         return null;
       }
-    }
-    return null;
   }
 
   public void emailPagoAtrasado(String correo) {
@@ -54,18 +48,15 @@ public class AdministrarCuentas implements CreacionCuenta, Update {
     nuevoCorreo.enviarCorreo(correo);
   }
 
-  @Override
+
   public Cuenta actualizarCuenta(Cuenta oldCuenta) {
-    Actualizar actualizar = new Actualizar();
-    Cuenta cuentaActualizada = actualizar.actualizarCuenta(oldCuenta);
-    return cuentaActualizada;
+    Update actualizar = new Actualizar();
+    return actualizar.actualizarCuenta(oldCuenta);
   }
 
   public Cuenta validarPago(Cuenta cuenta) {
     ValidarPago validacion = new ValidarPago();
-    Cuenta cuentaValidada = validacion.validarPago(cuenta);
-
-    return cuentaValidada;
+    return validacion.validarPago(cuenta);
   }
 
 }

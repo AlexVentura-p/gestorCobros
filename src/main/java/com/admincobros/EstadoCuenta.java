@@ -3,7 +3,6 @@ package com.admincobros;
 import java.io.*;
 
 public class EstadoCuenta {
-  Cuenta c = new Cuenta();
   File file = new File("recibo.txt");
   BufferedWriter bf = null;
 
@@ -35,6 +34,6 @@ public class EstadoCuenta {
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
-    return c;
+    return null;
   }
 }

@@ -12,7 +12,7 @@ public class ValidarPago {
     if (opcion.equals("si")) {
       EstadoCuenta ec = new EstadoCuenta();
       ec.estadoCuenta(cuenta);
-    } else if (!opcion.equals("si")) {
+    } else  {
       double interes = 0.10;
       double nuevoMonto = cuenta.getMonto() + (cuenta.getMonto() * interes);
       cuenta.setMonto(nuevoMonto);

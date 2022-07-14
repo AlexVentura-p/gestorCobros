@@ -58,6 +58,8 @@ public class Menu {
 
                             switch (optionAnswer) {
                                 case "a":
+                                    var a = new ValidarPago();
+                                    a.validarPago(listaCuentas.get(numeroCuenta));
                                     Cuenta cuentaValidada = admin.validarPago(listaCuentas.get(numeroCuenta));
                                     listaCuentas.replace(cuentaValidada.getNumeroCuenta(), cuentaValidada);
                                     System.out.println("Validando pago...\n");
@@ -86,7 +88,7 @@ public class Menu {
 
                         switch (answer) {
                             case "si":
-                                Cuenta nuevaCuenta = admin.CrearCuenta();
+                                Cuenta nuevaCuenta = admin.crearCuenta();
                                 listaCuentas.put(nuevaCuenta.getNumeroCuenta(), nuevaCuenta);
                                 break;
                         }
