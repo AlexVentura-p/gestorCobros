@@ -1,12 +1,17 @@
 package com.admincobros;
 
+import com.Bitacora;
 import com.email.AvisoPagoAtrasado;
 import com.email.EnvioCorreo;
 
+import java.security.PrivateKey;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdministrarCuentas implements CreacionCuenta, Update {
-
+  private final static Logger LOGGER = Logger.getLogger("administrarCuentas");
+  Bitacora bitacora = new Bitacora();
   @Override
   public Cuenta CrearCuenta() {
     Scanner input = new Scanner(System.in);
@@ -37,12 +42,13 @@ public class AdministrarCuentas implements CreacionCuenta, Update {
         nuevaCuenta.setEstado(input.nextLine());
 
         cuenta = nuevaCuenta;
-        System.out.println("Cuenta creada.");
-
+        LOGGER.log(Level.INFO,"Cuenta creada.");
+        bitacora.controlLog(LOGGER);
         return cuenta;
 
       } catch (Exception ex) {
-        System.out.println("Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
+        LOGGER.log(Level.SEVERE,"Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
+        bitacora.controlLog(LOGGER);
         return null;
       }
     }

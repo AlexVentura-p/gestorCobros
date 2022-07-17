@@ -1,10 +1,15 @@
 package com.admincobros;
 
+import com.Bitacora;
+
 import java.util.HashMap;
 import java.util.Scanner;
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Menu {
+    Bitacora bitacora = new Bitacora();
+    private final static Logger LOGGER = Logger.getLogger("menu");
     public static HashMap<Integer, Cuenta> listaCuentas = new HashMap<>();
     public void showMenu(){
 
@@ -93,10 +98,12 @@ public class Menu {
                     }
 
                 } catch (Exception ex) {
-                    System.out.println("\nEntrada no valida. ");
+                    LOGGER.log(Level.SEVERE,"Entrada no valida. ");
+                    bitacora.controlLog(LOGGER);
                 }
             }
         }
+
     }
 
 }

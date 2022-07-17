@@ -1,8 +1,14 @@
 package com.admincobros;
 
+import com.Bitacora;
+
 import java.io.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class EstadoCuenta {
+  Bitacora bitacora = new Bitacora();
+  private final static Logger LOGGER = Logger.getLogger("estadoCuenta");
   Cuenta c = new Cuenta();
   File file = new File("recibo.txt");
   BufferedWriter bf = null;
@@ -29,11 +35,14 @@ public class EstadoCuenta {
       file.createNewFile();
       bf = new BufferedWriter(new FileWriter(file));
       bf.write(mensaje);
-      System.out.println("El archivo se creo...");
-
+      LOGGER.log(Level.INFO,"El archivo se creo...");
+      bitacora.controlLog(LOGGER);
       bf.flush();
     } catch (IOException e) {
+      LOGGER.logp(Level.SEVERE,EstadoCuenta.class.getName(),"estadoCuenta","fallo de ejecucion",e);
+      bitacora.controlLog(LOGGER);
       throw new RuntimeException(e);
+
     }
     return c;
   }
