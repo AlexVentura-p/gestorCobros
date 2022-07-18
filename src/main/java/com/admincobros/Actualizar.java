@@ -2,10 +2,14 @@ package com.admincobros;
 
 import com.enums.CondicionCuenta;
 import java.math.BigDecimal;
+import com.Bitacora;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Actualizar implements Update {
-
+  Bitacora bitacora = new Bitacora();
+  private final static Logger LOGGER = Logger.getLogger("Actualizar");
   public Cuenta actualizarCuenta(Cuenta cuenta) {
     Scanner input = new Scanner(System.in);
 
@@ -24,13 +28,15 @@ public class Actualizar implements Update {
             System.out.println("Correo actual: " + cuenta.getCorreo());
             System.out.print("Nuevo correo: ");
             cuenta.setCorreo(input.nextLine());
-            System.out.println("Correo actualizado...");
+            LOGGER.log(Level.INFO,"Datos actualizados correctamente");
+            bitacora.controlLog(LOGGER);
             break;
           case "b":
             System.out.println("Cuota actual: " + cuenta.getCuota());
             System.out.print("Nueva cuota: ");
             cuenta.setCuota(new BigDecimal(input.nextLine()));
-            System.out.println("Cuota actualizada...");
+            LOGGER.log(Level.INFO,"Datos actualizados correctamente");
+            bitacora.controlLog(LOGGER);
             break;
           case "c":
             System.out.println("Estado actual: " + cuenta.getEstado());
@@ -40,14 +46,16 @@ public class Actualizar implements Update {
               answer = input.nextLine().toLowerCase().trim();
               if (answer.equals("si")) {
                 cuenta.setEstado(CondicionCuenta.INACTIVO);
-                System.out.println("Estado actualizado...");
+                LOGGER.log(Level.INFO,"Datos actualizados correctamente");
+                bitacora.controlLog(LOGGER);
               }
             } else {
               System.out.println("Cambiar estado a activo? si/(cualquier otra entrada para no)");
               answer = input.nextLine().toLowerCase().trim();
               if (answer.equals("si")) {
                 cuenta.setEstado(CondicionCuenta.ACTIVO);
-                System.out.println("Estado actualizado...");
+                LOGGER.log(Level.INFO,"Datos actualizados correctamente");
+                bitacora.controlLog(LOGGER);
               }
             }
             break;
@@ -56,7 +64,8 @@ public class Actualizar implements Update {
         }
       } catch (Exception e) {
         input.nextLine();
-        System.out.println("Entrada incorrecta.\n");
+        LOGGER.log(Level.WARNING,"Datos incorrectos");
+        bitacora.controlLog(LOGGER);
       }
     }
     return cuenta;

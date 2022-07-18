@@ -6,10 +6,14 @@ import java.util.logging.Logger;
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+
+import com.Bitacora;
 import lombok.Getter;
 import lombok.Setter;
 
 public class AvisoPagoAtrasado implements EnvioCorreo {
+  private final static Logger LOGGER = Logger.getLogger("envioCorreo");
+  Bitacora bitacora = new Bitacora();
   @Getter @Setter private String correoEmpresa = "trabajouml2021@gmail.com";
   @Getter @Setter private String passwordCorreoEmpresa = "jtvvbnzseosalorh";
   @Getter @Setter private String host = "smtp.gmail.com";
@@ -40,8 +44,13 @@ public class AvisoPagoAtrasado implements EnvioCorreo {
     try {
       Transport.send(mensaje);
       System.out.println("Enviado.\n");
+      LOGGER.log(Level.INFO,"Proceso exitoso");
+      bitacora.controlLog(LOGGER);
+
     } catch (MessagingException e) {
       System.out.println("Error." + e.getMessage() + " Mensaje no enviado.");
+      LOGGER.logp(Level.WARNING,AvisoPagoAtrasado.class.getName(),"enviarCorreo","Direccion invalida");
+      bitacora.controlLog(LOGGER);
     }
   }
 
@@ -61,11 +70,12 @@ public class AvisoPagoAtrasado implements EnvioCorreo {
               Pedimos realizarlo lo más antes posible para evitar todo tipo de intereses.
               """;
       }
-
       mensaje.setText(text);
       return mensaje;
     } catch (Exception e) {
-      Logger.getLogger(AvisoPagoAtrasado.class.getName()).log(Level.SEVERE, null, e);
+      LOGGER.logp(Level.SEVERE,AvisoPagoAtrasado.class.getName(),"prepararMensaje",null,e);
+      bitacora.controlLog(LOGGER);
+      //Logger.getLogger(AvisoPagoAtrasado.class.getName()).log(Level.SEVERE, null, e);
     }
     return null;
   }

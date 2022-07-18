@@ -1,23 +1,25 @@
 package com.admincobros;
 
+import com.Bitacora;
 import com.email.AvisoPagoAtrasado;
 import com.email.EnvioCorreo;
 import com.enums.CondicionCuenta;
-
 import java.math.BigDecimal;
-import java.math.RoundingMode;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class AdministrarCuentas {
+    private final static Logger LOGGER = Logger.getLogger("administrarCuentas");
+    Bitacora bitacora = new Bitacora();
 
-  public Cuenta crearCuenta() {
+    public Cuenta crearCuenta(int nuevoNumeroCuenta) {
     Scanner input = new Scanner(System.in);
 
     try {
       Cuenta nuevaCuenta = new Cuenta();
-      System.out.println("Ingrese numero cuenta: ");
-      nuevaCuenta.setNumeroCuenta(input.nextInt());
-      input.nextLine();
+      System.out.println("Nueva cuenta a crear: numero " + nuevoNumeroCuenta);
+      nuevaCuenta.setNumeroCuenta(nuevoNumeroCuenta);
       System.out.println("Ingrese nombre cliente: ");
       nuevaCuenta.setNombre(input.nextLine());
       System.out.println("Ingrese DUI sin guiones: ");
@@ -32,18 +34,17 @@ public class AdministrarCuentas {
       nuevaCuenta.setMontoInicial(new BigDecimal(monto));
       nuevaCuenta.setMonto(new BigDecimal(monto));
       System.out.println("Ingrese cuota: ");
-
       nuevaCuenta.setCuota(new BigDecimal(input.nextLine()));
-
       nuevaCuenta.setEstado(CondicionCuenta.ACTIVO);
 
-      System.out.println("Cuenta creada.");
-
-      return nuevaCuenta;
+        LOGGER.log(Level.INFO,"Cuenta creada.");
+        bitacora.controlLog(LOGGER);
+        return nuevaCuenta;
 
     } catch (Exception ex) {
-      System.out.println("Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
-      return null;
+        LOGGER.log(Level.SEVERE,"Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
+        bitacora.controlLog(LOGGER);
+        return null;
     }
   }
 

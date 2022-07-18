@@ -16,7 +16,9 @@ class ValidarPagoTest {
     cuenta.setMonto(new BigDecimal("1500"));
     ByteArrayInputStream in = new ByteArrayInputStream("no".getBytes());
     System.setIn(in);
+    System.out.println("monto deuda inicial: " + cuenta.getMonto());
     assertEquals("1650.00", test1.validarPago(cuenta).getMonto().toString());
+    System.out.println("monto deuda despues de incumplimiento de pago: " + cuenta.getMonto());
     System.setIn(System.in);
   }
 

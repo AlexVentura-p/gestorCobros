@@ -3,13 +3,17 @@ package com.admincobros;
 import com.enums.CondicionCuenta;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Scanner;
+import com.Bitacora;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Menu {
-  public static HashMap<Integer, Cuenta> listaCuentas = new HashMap<>();
+    Bitacora bitacora = new Bitacora();
+    private final static Logger LOGGER = Logger.getLogger("menu");
+    public static HashMap<Integer, Cuenta> listaCuentas = new HashMap<>();
     @Getter @Setter private AdministrarCuentas admin;
     @Getter @Setter private Scanner input;
 
@@ -34,30 +38,6 @@ public class Menu {
     }
   }
 
-  private void agregarDatosTemporales(){
-      Cuenta nueva = new Cuenta();
-      nueva.setNumeroCuenta(123);
-      nueva.setNombre("alex");
-      nueva.setProducto("silla");
-      nueva.setCorreo("2510282020@mail.utec.edu.sv");
-      nueva.setMontoInicial(new BigDecimal(1200));
-      nueva.setMonto(new BigDecimal(1200));
-      nueva.setCuota(new BigDecimal(12));
-      nueva.setEstado(CondicionCuenta.ACTIVO);
-
-      listaCuentas.put(nueva.getNumeroCuenta(), nueva);
-
-      Cuenta nueva2 = new Cuenta();
-      nueva2.setNumeroCuenta(45);
-      nueva2.setNombre("alex");
-      nueva2.setProducto("mesa");
-      nueva2.setCorreo("2510282020@mail.utec.edu.sv");
-      nueva2.setMonto(new BigDecimal(100));
-      nueva2.setCuota(new BigDecimal(12));
-      nueva2.setEstado(CondicionCuenta.ACTIVO);
-
-      listaCuentas.put(nueva2.getNumeroCuenta(), nueva2);
-  }
 
   private void showAccountOptionsMenu(String answer){
       try {
@@ -102,21 +82,51 @@ public class Menu {
               }
 
           } else {
+              int nuevoNumeroCuenta = Integer.valueOf(answer);
               System.out.println("\nCuenta no existe, desea agregar cuenta?");
               System.out.println("Digite si para crear o cualquier otra entrada para no.");
               answer = input.nextLine().toLowerCase().trim();
 
               switch (answer) {
                   case "si":
-                      Cuenta nuevaCuenta = admin.crearCuenta();
+                      Cuenta nuevaCuenta = admin.crearCuenta(nuevoNumeroCuenta);
                       listaCuentas.put(nuevaCuenta.getNumeroCuenta(), nuevaCuenta);
                       break;
               }
           }
 
       } catch (Exception ex) {
-          System.out.println("\nEntrada no valida. ");
+          LOGGER.log(Level.SEVERE,"Entrada no valida. ");
+          bitacora.controlLog(LOGGER);
       }
   }
+
+    private void agregarDatosTemporales(){
+        Cuenta nueva = new Cuenta();
+        nueva.setNumeroCuenta(123);
+        nueva.setNombre("alex");
+        nueva.setDui(987654321);
+        nueva.setProducto("silla");
+        nueva.setCorreo("2510282020@mail.utec.edu.sv");
+        nueva.setMontoInicial(new BigDecimal(1200));
+        nueva.setMonto(new BigDecimal(1200));
+        nueva.setCuota(new BigDecimal(12));
+        nueva.setEstado(CondicionCuenta.ACTIVO);
+
+        listaCuentas.put(nueva.getNumeroCuenta(), nueva);
+
+        Cuenta nueva2 = new Cuenta();
+        nueva2.setNumeroCuenta(45);
+        nueva2.setNombre("alex");
+        nueva2.setDui(123456789);
+        nueva2.setProducto("mesa");
+        nueva2.setCorreo("2510282020@mail.utec.edu.sv");
+        nueva2.setMontoInicial(new BigDecimal(100));
+        nueva2.setMonto(new BigDecimal(100));
+        nueva2.setCuota(new BigDecimal(12));
+        nueva2.setEstado(CondicionCuenta.ACTIVO);
+
+        listaCuentas.put(nueva2.getNumeroCuenta(), nueva2);
+    }
 
 }
