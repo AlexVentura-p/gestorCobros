@@ -2,52 +2,55 @@ package com.admincobros;
 
 import com.email.AvisoPagoAtrasado;
 import com.email.EnvioCorreo;
+import com.enums.CondicionCuenta;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Scanner;
 
 public class AdministrarCuentas {
 
-
   public Cuenta crearCuenta() {
     Scanner input = new Scanner(System.in);
 
-      try {
-        Cuenta nuevaCuenta = new Cuenta();
-        System.out.println("Ingrese numero cuenta: ");
-        nuevaCuenta.setNumeroCuenta(input.nextInt());
-        input.nextLine();
-        System.out.println("Ingrese nombre cliente: ");
-        nuevaCuenta.setNombre(input.nextLine());
-        System.out.println("Ingrese DUI sin guiones: ");
-        nuevaCuenta.setDui(input.nextInt());
-        input.nextLine();
-        System.out.println("Ingrese correo de cliente");
-        nuevaCuenta.setCorreo(input.nextLine());
-        System.out.println("Ingrese nombre producto: ");
-        nuevaCuenta.setProducto(input.nextLine());
-        System.out.println("Ingrese Monto producto: ");
-        nuevaCuenta.setMonto(input.nextDouble());
-        System.out.println("Ingrese cuota: ");
-        nuevaCuenta.setCuota(input.nextDouble());
-        input.nextLine();
-        System.out.println("Digite el estado de la cuenta: ");
-        nuevaCuenta.setEstado(input.nextLine());
+    try {
+      Cuenta nuevaCuenta = new Cuenta();
+      System.out.println("Ingrese numero cuenta: ");
+      nuevaCuenta.setNumeroCuenta(input.nextInt());
+      input.nextLine();
+      System.out.println("Ingrese nombre cliente: ");
+      nuevaCuenta.setNombre(input.nextLine());
+      System.out.println("Ingrese DUI sin guiones: ");
+      nuevaCuenta.setDui(input.nextInt());
+      input.nextLine();
+      System.out.println("Ingrese correo de cliente");
+      nuevaCuenta.setCorreo(input.nextLine());
+      System.out.println("Ingrese nombre producto: ");
+      nuevaCuenta.setProducto(input.nextLine());
+      System.out.println("Ingrese Monto producto: ");
+      String monto = input.nextLine();
+      nuevaCuenta.setMontoInicial(new BigDecimal(monto));
+      nuevaCuenta.setMonto(new BigDecimal(monto));
+      System.out.println("Ingrese cuota: ");
 
-        System.out.println("Cuenta creada.");
+      nuevaCuenta.setCuota(new BigDecimal(input.nextLine()));
 
-        return nuevaCuenta;
+      nuevaCuenta.setEstado(CondicionCuenta.ACTIVO);
 
-      } catch (Exception ex) {
-        System.out.println("Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
-        return null;
-      }
+      System.out.println("Cuenta creada.");
+
+      return nuevaCuenta;
+
+    } catch (Exception ex) {
+      System.out.println("Error. Dato no ingresado. Ingrese datos validos. " + ex.getMessage());
+      return null;
+    }
   }
 
   public void emailPagoAtrasado(String correo) {
     EnvioCorreo nuevoCorreo = new AvisoPagoAtrasado();
     nuevoCorreo.enviarCorreo(correo);
   }
-
 
   public Cuenta actualizarCuenta(Cuenta oldCuenta) {
     Update actualizar = new Actualizar();
@@ -59,4 +62,8 @@ public class AdministrarCuentas {
     return validacion.validarPago(cuenta);
   }
 
+  public void mostrarDatos(Cuenta cuenta) {
+    MostrarCuenta mostrar = new MostrarCuenta();
+    mostrar.mostrarDatosCuenta(cuenta);
+  }
 }

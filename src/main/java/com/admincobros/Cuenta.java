@@ -1,7 +1,11 @@
 package com.admincobros;
 
+import com.enums.CondicionCuenta;
 import lombok.Getter;
 import lombok.Setter;
+
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public class Cuenta {
 
@@ -9,10 +13,23 @@ public class Cuenta {
   @Setter @Getter private String nombre;
   @Setter @Getter private int dui;
   @Setter @Getter private String producto;
-  @Setter @Getter private double monto;
-  @Setter @Getter private double cuota;
-  @Setter @Getter private String estado;
+  @Getter private BigDecimal monto;
+  @Getter private BigDecimal cuota;
+  @Setter @Getter private CondicionCuenta estado;
   @Setter @Getter private String correo;
+  @Getter private BigDecimal montoInicial;
+
+  public void setMonto(BigDecimal monto) {
+    this.monto = monto.setScale(2, RoundingMode.HALF_EVEN);
+  }
+
+  public void setMontoInicial(BigDecimal montoInicial){
+    this.montoInicial = montoInicial.setScale(2, RoundingMode.HALF_EVEN);
+  }
+
+  public void setCuota(BigDecimal cuota){
+    this.cuota = cuota.setScale(2,RoundingMode.HALF_EVEN);
+  }
 
   public Cuenta() {}
 
@@ -21,17 +38,17 @@ public class Cuenta {
       String nombre,
       int dui,
       String producto,
-      double monto,
-      double cuota,
-      String estado,
+      String montoInicial,
+      String cuota,
       String correo) {
     this.numeroCuenta = numeroCuenta;
     this.nombre = nombre;
     this.dui = dui;
     this.producto = producto;
-    this.monto = monto;
-    this.cuota = cuota;
-    this.estado = estado;
+    this.setMonto(new BigDecimal(montoInicial));
+    this.setMontoInicial(new BigDecimal(montoInicial));
+    this.setCuota(new BigDecimal(cuota));
     this.correo = correo;
+    this.estado = CondicionCuenta.ACTIVO;
   }
 }

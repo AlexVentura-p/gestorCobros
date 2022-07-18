@@ -23,7 +23,9 @@ public class EstadoCuenta {
               + cuenta.getProducto()
               + "\nCuota: "
               + cuenta.getCuota()
-              + "\nMonto: "
+              + "\nMonto inicial: "
+              + cuenta.getMontoInicial()
+              + "\nMonto actual: "
               + cuenta.getMonto();
       file.createNewFile();
       bf = new BufferedWriter(new FileWriter(file));

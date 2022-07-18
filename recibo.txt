@@ -1,7 +1,8 @@
 Gracias por su pago******************
 Cuenta: 123
-Nombre: alex
-Dui: 0
-Producto: silla
-Cuota: 12.0
-Monto: 1320.0
+Nombre: asd
+Dui: 123
+Producto: qwe
+Cuota: 12.354
+Monto inicial: 12345.12458
+Monto actual: 12332.77
